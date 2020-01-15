@@ -16,19 +16,20 @@
 def interactive_menu
   loop do
     print_menu
-    selection = gets.chomp
-    case selection
+    process(gets.chomp)
+  end
+end
 
-    when "1"
-      @students = input_students
-    when "2"
-      show_students
-    when "9"
-      exit
-
-    else
-      puts "I don't know what to do with that input..."
-    end
+def process(selection)
+  case selection
+  when "1"
+    @students = input_students
+  when "2"
+    show_students
+  when "9"
+    exit
+  else
+    puts "I don't know what to do with that input..."
   end
 end
 

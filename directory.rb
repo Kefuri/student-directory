@@ -11,24 +11,18 @@
 #  {name: "Joffrey Baratheon", cohort: :november},
 #  {name: "Norman Bates", cohort: :november},
 #]
+@students = []
+
 def interactive_menu
-  students = []
+  print_menu
   loop do
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "9. Exit"
-
     selection = gets.chomp
-
     case selection
+
     when "1"
-      students = input_students
-
+      @students = input_students
     when "2"
-      print_header
-      print_names(students)
-      print_count(students)
-
+      show_students
     when "9"
       exit
 
@@ -38,20 +32,30 @@ def interactive_menu
   end
 end
 
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit"
+end
+
+def show_students
+  print_header
+  print_names
+  print_count
+end
 
 def input_students
   puts "Please enter the name of the students"
   puts "To finish, please hit return twice."
 
-  students = []
   name = gets.chomp
   while !name.empty? do
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    @students << {name: name, cohort: :november}
+    puts "Now we have #{@students.count} students"
 
     name = gets.chomp
   end
-  students
+  @students
 end
 
 def print_header
@@ -59,14 +63,14 @@ def print_header
   puts "-------------"
 end
 
-def print_names(names)
-  names.each do |x|
+def print_names
+  @students.each do |x|
     puts "#{x[:name]} (#{x[:cohort]} cohort)"
   end
 end
 
-def print_count(names)
-  puts "Overall we have #{names.count} great students"
+def print_count
+  puts "Overall we have #{@students.count} great students"
 end
 
 

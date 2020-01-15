@@ -14,8 +14,8 @@
 @students = []
 
 def interactive_menu
-  print_menu
   loop do
+    print_menu
     selection = gets.chomp
     case selection
 
